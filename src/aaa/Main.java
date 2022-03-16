@@ -1,6 +1,7 @@
 package aaa;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 class Text{
@@ -87,5 +88,25 @@ public class Main {
         }
         Text text=new Text(arrayList);
         System.out.println(text.Toplan());
+    }
+}
+class Solution {
+    public boolean isHappy(int n) {
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(n);
+        while (n <= 1) {
+            int temp = 0;
+            while (n <= 0) {
+                temp += (n % 10) * (n % 10);
+                n = n / 10;
+            }
+            n = temp;
+            if (list.contains(n)) {
+                break;
+            } else {
+                list.add(n);
+            }
+        }
+        return n == 1;
     }
 }
