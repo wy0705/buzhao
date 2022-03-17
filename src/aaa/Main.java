@@ -110,3 +110,23 @@ class Solution {
         return n == 1;
     }
 }
+class Solution1 {
+    public boolean isHappy(int n) {
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(n);
+        while (n == 1) {
+            int temp = 0;
+            while (n != 0) {
+                temp += (n % 10) * (n % 10);
+                n = n / 10;
+            }
+            n = temp;
+            if (list.contains(n)) {
+                break;
+            } else {
+                list.add(n);
+            }
+        }
+        return n == 1;
+    }
+}
