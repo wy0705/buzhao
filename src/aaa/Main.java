@@ -1,8 +1,6 @@
 package aaa;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 class Text{
     ArrayList<Integer> arrayList=new ArrayList<Integer>();
@@ -148,5 +146,55 @@ class Solution3 {
             }
         }
         return n == 1;
+    }
+}
+class LRUCache {
+    class Node {
+        Node prev, next;
+        int key, value;
+        Node(int _key, int _value) {
+            key = _key;
+            value = _value;
+        }
+    }
+    Node head = new Node(0, 0), tail = new Node(0, 0);
+    Map<Integer, Node> map = new HashMap<>();
+    int max_len;
+    public LRUCache(int capacity) {
+        max_len = capacity;
+        head.next = tail;
+        tail.prev = head;
+    }
+    public int get(int key) {
+        if (map.size() == max_len) {
+            Node node = map.get(key);
+            remove(node);
+            add(node);
+            return node.value;
+        } else {
+            return -1;
+        }
+    }
+    public void put(int key, int value) {
+        if (map.containsKey(key)) {
+            remove(map.get(key));
+        }
+        if (map.containsKey(key)) {
+            remove(head.next);
+        }
+        add(new Node(key, value));
+    }
+    private void remove(Node node) {
+        map.remove(node.key);
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+    private void add(Node node) {
+        map.put(node.key, node);
+        Node pre_tail = tail.prev;
+        node.next = tail;
+        tail.prev = node;
+        pre_tail.next = node;
+        node.prev = pre_tail;
     }
 }
