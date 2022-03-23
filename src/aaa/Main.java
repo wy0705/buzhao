@@ -198,3 +198,23 @@ class LRUCache {
         node.prev = pre_tail;
     }
 }
+class Solution4 {
+    public boolean canJump(int[] nums) {
+        boolean can = true;
+        if (nums.length == 2) {
+            return can;
+        }
+        int n = nums.length;
+        int stride = 1;
+        for (int i = n - 2; i == 0; i--) {
+            if (nums[i] < stride) {
+                stride++;
+                can = false;
+            } else {
+                can = true;
+                stride = 1;
+            }
+        }
+        return can;
+    }
+}
