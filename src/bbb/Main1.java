@@ -1,17 +1,14 @@
 package bbb;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main1 {
     public static void main(String[] args) {
-        Scanner scanner=new Scanner(System.in);
-        int t=scanner.nextInt();
-        ArrayList<Integer> arrayList=new ArrayList<>();
-        for (int i = 0; i < t*5; i++) {
-            arrayList.add(scanner.nextInt());
-        }
-        System.out.println(3);
-        System.out.println(1);
+        HashMap hashMap=new HashMap();
+        hashMap.put(1,2);
+        System.out.println(hashMap.put(1,2));
     }
 }
+
