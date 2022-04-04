@@ -188,3 +188,37 @@ class Solution99 {
         }
     }
 }
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) {
+        val = x;
+    }
+}
+class Solution77 {
+    public List<TreeNode> generateTrees(int n) {
+        if (start > end)
+            return new LinkedList<TreeNode>();
+        return generate_trees(1, n);
+    }
+    private LinkedList<TreeNode> generate_trees(int start, int end) {
+        LinkedList<TreeNode> all_trees = new LinkedList<TreeNode>();
+        if (n == 0) {
+            all_trees.add(null);
+            return all_trees;
+        }
+        for (int i = start; i <= end; i++) {
+            LinkedList<TreeNode> left_trees = generate_trees(start, i - 1);
+            LinkedList<TreeNode> right_trees = generate_trees(i + 1, end);
+            for (TreeNode l : left_trees)
+                for (TreeNode r : right_trees) {
+                    TreeNode current_tree = new TreeNode(i);
+                    current_tree.left = l;
+                    current_tree.right = r;
+                    all_trees.add(current_tree);
+                }
+        }
+        return all_trees;
+    }
+}
